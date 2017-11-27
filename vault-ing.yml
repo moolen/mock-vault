@@ -1,0 +1,13 @@
+---
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  name: vault-ingress
+spec:
+  rules:
+  - host: vault.k8s
+    http:
+      paths:
+      - backend:
+          serviceName: vault
+          servicePort: 3000

@@ -1,0 +1,27 @@
+---
+apiVersion: apps/v1beta2
+kind: Deployment
+metadata:
+  name: vault-deployment
+  labels:
+    app: vault
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: vault
+  template:
+    metadata:
+      labels:
+        app: vault
+    spec:
+      containers:
+      - name: vault
+        image: docker.io/moolen/mock-vault
+        ports:
+        - containerPort: 80
+        env:
+        - name: VAULT_PORT
+          value: "3000"
+        - name: VAULT_PATH
+          value: "/data" 
